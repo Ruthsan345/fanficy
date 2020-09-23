@@ -9,10 +9,10 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import Header from '../Header/Header';
 import MainFeaturedPost from './MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
+import Category from './Category';
 import Main from './Main';
-//import Sidebar from './Sidebar';
+import AppBar from '@material-ui/core/AppBar';
 import Footer from '../Footer/Footer';
-
 import Album from '../Album/Album'
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
@@ -104,10 +104,13 @@ export default function Blog() {
        
         </main>
       </Container>
-      
+     
       
       <Album></Album>
-      
+      <AppBar component="h1" variant="h5" position="static" align="center" color="inherit">
+        Category
+     </AppBar>
+      <Category></Category>
       <Footer
         title="Footer"
         description="Something here to give the footer a purpose!"

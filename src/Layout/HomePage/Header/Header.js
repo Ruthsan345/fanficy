@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
+import AppBar from '@material-ui/core/AppBar';
 import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import SearchBar from "material-ui-search-bar";
+import { NavLink ,Router,Redirect } from 'react-router-dom';
+//import Routes from '../../../Routes/Routes';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -25,12 +28,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 function Header(props) {
   const classes = useStyles();
   const { sections, title } = props;
 
   return (
+    
     <React.Fragment>
+  
       <Toolbar className={classes.toolbar}>
         <Button size="small">Subscribe</Button>
         <Typography
@@ -41,14 +47,24 @@ function Header(props) {
           noWrap
           className={classes.toolbarTitle}
         >
-          {title}
         </Typography>
-        <IconButton>
-          <SearchIcon />
-        </IconButton>
-        <Button variant="outlined" size="small">
+        <SearchBar
+  
+  />
+  &nbsp;  &nbsp;
+
+<Link href="/SignIn"></Link>
+       <Button  variant="outlined" size="small">
+         Log In
+        </Button>
+     
+  &nbsp;  &nbsp;
+       
+       <Link href="/SignUp">
+       <Button  variant="outlined" size="small">
           Sign up
         </Button>
+        </Link>
       </Toolbar>
       <Toolbar
         component="nav"
@@ -68,6 +84,7 @@ function Header(props) {
           </Link>
         ))}
       </Toolbar>
+
     </React.Fragment>
   );
 }

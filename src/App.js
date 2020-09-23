@@ -1,10 +1,12 @@
 import React from 'react';
-import Album from './Layout/HomePage/Album/Album'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Blog from './Layout/HomePage/Main/Blog';
+import SignUp from './Layout/HomePage/Main/SignUp';
+import SignIn from './Layout/HomePage/Main/SignIn';
 
+import { BrowserRouter as Router, Route } from "react-router-dom";
 function App() {
 
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -23,12 +25,12 @@ function App() {
     <div >
   <ThemeProvider theme={theme}>
   <CssBaseline/>
-      
-        
-        
-        
-         <Blog/>
-    
+  <Router>
+  <Route exact path="/" component={Blog} />       
+  <Route exact path="/SignUp" component={SignUp} />    
+  <Route exact path="/SignIn" component={SignIn} />     
+ 
+    </Router>
     
     
     </ThemeProvider>
