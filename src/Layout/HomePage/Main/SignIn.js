@@ -12,7 +12,9 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-
+import fire from '../../../config/firebase';
+import  { Redirect } from 'react-router-dom' 
+import { render } from '@testing-library/react';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -58,9 +60,34 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
+class Login extends React.Component{
+  constructor(props){
+    super(props);
+   this.login=this.login.bind(this);
+   this.handleChange=this.handleChange.bind(this);
+    this.state={
+      email:'',
+      password:''
+    }
+  }
 
-export default function SignInSide() {
-  const classes = useStyles();
+  login(e){
+
+    e.preventDefault();
+    fire.auth().signInWithEmailAndPassword(this.state.email.trim(),this.state.password).then((u)=>{
+      alert("Login Sucessfull");
+      this.props.history.push("/Dashboard")
+    }).catch((error)=>{
+      alert("Invalid Credentials");
+      console.log(error);
+    });
+  }
+handleChange(e){
+    this.setState({ [e.target.name]: e.target.value});
+  }
+
+render() {
+  const classes = useStyles;
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -85,6 +112,9 @@ export default function SignInSide() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={this.state.email}
+              onChange={this.handleChange}
+
             />
             <TextField
               variant="outlined"
@@ -96,6 +126,9 @@ export default function SignInSide() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={this.state.password}
+              onChange={this.handleChange}
+
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -106,6 +139,8 @@ export default function SignInSide() {
               fullWidth
               variant="contained"
               className={classes.submit}
+              onClick={this.login}
+
             >
               Sign In
             </Button>
@@ -130,3 +165,6 @@ export default function SignInSide() {
     </Grid>
   );
 }
+}
+
+export default Login;

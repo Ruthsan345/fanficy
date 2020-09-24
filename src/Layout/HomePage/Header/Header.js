@@ -53,11 +53,11 @@ function Header(props) {
   />
   &nbsp;  &nbsp;
 
-<Link href="/SignIn"></Link>
+<Link href="/SignIn">
        <Button  variant="outlined" size="small">
          Log In
         </Button>
-     
+        </Link>
   &nbsp;  &nbsp;
        
        <Link href="/SignUp">

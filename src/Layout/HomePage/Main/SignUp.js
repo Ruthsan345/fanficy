@@ -10,12 +10,13 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import fire from '../../../config/firebase';
+import { render } from '@testing-library/react';
+import PropTypes from 'prop-types';
 
-
-
-const useStyles = makeStyles((theme) => ({
+const useStyle = withStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -35,8 +36,37 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
-  const classes = useStyles();
+
+class SignUp extends React.Component{
+  constructor(props){
+    super(props);
+    this.signup=this.signup.bind(this);
+    this.handleChange=this.handleChange.bind(this);
+    this.state={
+      email:'',
+      password:''
+    }
+  }
+
+  signup(e){
+
+    e.preventDefault();
+    fire.auth().createUserWithEmailAndPassword(this.state.email.trim(),this.state.password).then((u)=>{
+      alert("Signup Successfull");
+      this.props.history.push("/SignIn")
+    }).catch((error)=>{
+      alert("Invalid Details");
+      console.log(error);
+    });
+  }
+
+
+handleChange(e){
+    this.setState({ [e.target.name]: e.target.value});
+  }
+
+render() {
+  const classes = useStyle;
 
   return (
     <Container component="main" maxWidth="xs">
@@ -48,6 +78,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
+
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
@@ -71,6 +102,7 @@ export default function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+               
               />
             </Grid>
             <Grid item xs={12}>
@@ -82,6 +114,8 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                value={this.state.email}
+                onChange={this.handleChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -94,6 +128,8 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={this.state.password}
+                onChange={this.handleChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -108,6 +144,7 @@ export default function SignUp() {
             fullWidth
             variant="contained"
             className={classes.submit}
+            onClick={this.signup}
           >
             Sign Up
           </Button>
@@ -125,3 +162,9 @@ export default function SignUp() {
     </Container>
   );
 }
+}
+
+SignUp.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+export default SignUp;
