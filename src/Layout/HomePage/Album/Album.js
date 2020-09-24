@@ -13,7 +13,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
+import firebase from '../../../config/firebase'
 
+const db =firebase.firestore()
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -48,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const cards = [1, 2, 3, 4, 5, 6];
+
 
 export default function Album() {
   const classes = useStyles();
