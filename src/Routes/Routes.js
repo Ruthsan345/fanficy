@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import {BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Blog from '../Layout/HomePage/Main/Blog';
-import SignUp from '../Layout/HomePage/Main/SignUp';
-import SignIn from '../Layout/HomePage/Main/SignIn';
+import SignUp from '../Layout/Auth/SignUp/SignUp';
+import SignIn from '../Layout/Auth/SignIn/SignIn';
 import Dashboard from '../Layout/Dashboard/Dashboard'
 import fire from '../config/firebase';
 import  { Redirect } from 'react-router-dom' 

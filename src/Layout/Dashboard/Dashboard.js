@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
-import SignIn from '../HomePage/Main/SignIn';
+import SignIn from '../Auth/SignIn/SignIn';
 import fire from '../../config/firebase';
 
 
@@ -52,7 +52,7 @@ logout(){
     fire.auth().signOut().then((u)=>{
         alert("Logout sucess");
       }).catch((error)=>{
-        alert("Invalid Credentials");
+        alert("Logout Failed");
         console.log(error);
       });
 }
