@@ -65,6 +65,13 @@ function Header(props) {
           Sign up
         </Button>
         </Link>
+        &nbsp;  &nbsp;
+       
+        <Link href="/SignUp">
+       <Button  variant="outlined" size="small">
+          profile
+        </Button>
+        </Link>
       </Toolbar>
       <Toolbar
         component="nav"

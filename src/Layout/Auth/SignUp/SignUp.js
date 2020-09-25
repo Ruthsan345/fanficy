@@ -2,12 +2,14 @@ import * as React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 
+import {reactLocalStorage} from 'reactjs-localstorage';
+
 import {withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import fire from '../../../config/firebase';
 import { render } from '@testing-library/react';
 import PropTypes from 'prop-types';
-
+  
 const useStyle = withStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -28,7 +30,7 @@ const useStyle = withStyles((theme) => ({
   },
 }));
 
-
+reactLocalStorage.setObject('textval',  "");
 class SignUp extends React.Component{
   constructor(props){
     super(props);
@@ -36,7 +38,8 @@ class SignUp extends React.Component{
     this.handleChange=this.handleChange.bind(this);
     this.state={
       email:'',
-      password:''
+      password:'',
+      textval:''
     }
   }
 
@@ -44,8 +47,13 @@ class SignUp extends React.Component{
 
     e.preventDefault();
     fire.auth().createUserWithEmailAndPassword(this.state.email.trim(),this.state.password).then((u)=>{
+      reactLocalStorage.setObject('textval', this.state.email);
       alert("Signup Successfull");
-      this.props.history.push("/SignIn")
+      this.props.history.push("/Dashboard")
+      this.props.navigation.navigate('/Dashboard', {  
+        userName: this.state.email,  
+        
+    })  
     }).catch((error)=>{
       alert("Invalid Details");
       console.log(error);
@@ -73,12 +81,7 @@ render() {
 		<form>
     <h2>Sign Up</h2>
       <p>Please fill in this form to create an account.</p>
-      <div class="input-group mb-3">
-		<div class="input-group-append">
-		<span class="input-group-text"><i class="fas fa-user"></i></span>
-		</div>
-		<input type="text" name="name" class="form-control input_user" value="" placeholder="user name"  />
-		</div>
+     
 		<div class="input-group mb-3">
 		<div class="input-group-append">
 		<span class="input-group-text"><i class="fas fa-user"></i></span>

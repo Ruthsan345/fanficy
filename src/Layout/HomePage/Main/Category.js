@@ -2,10 +2,10 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
-import aa from '../../../images/download.jpg'
+
 const images = [
   {
-    url: '../../../images/download.jpg',
+    url: 'https://source.unsplash.com/random',
     title: 'Marvel',
     width: '33%',
   },
