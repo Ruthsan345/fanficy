@@ -1,4 +1,6 @@
 import * as React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../../../index.css';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -87,82 +89,55 @@ handleChange(e){
   }
 
 render() {
-  const classes = useStyles;
 
   return (
-    <Grid container component="main" className={classes.root}>
-      <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <form className={classes.form} noValidate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              value={this.state.email}
-              onChange={this.handleChange}
-
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              value={this.state.password}
-              onChange={this.handleChange}
-
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              className={classes.submit}
-              onClick={this.login}
-
-            >
-              Sign In
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="SignUp" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
-            <Box mt={5}>
-              <Copyright />
-            </Box>
-          </form>
-        </div>
-      </Grid>
-    </Grid>
+    <div class="container h-100">
+		<div class="d-flex justify-content-center h-100">
+		<div class="user_card">
+		<div class="d-flex justify-content-center">
+		<div class="brand_logo_container">
+		<img src="https://www.logo.wine/a/logo/Google_Account/Google_Account-Logo.wine.svg" class="brand_logo" alt="Logo"/>
+		</div>
+		</div>
+		<div class="d-flex justify-content-center form_container">
+		<form>
+		<div class="input-group mb-3">
+		<div class="input-group-append">
+		<span class="input-group-text"><i class="fas fa-user"></i></span>
+		</div>
+		<input type="text" name="email" class="form-control input_user" value="" placeholder="username or email"  value={this.state.email}
+                onChange={this.handleChange}/>
+		</div>
+		<div class="input-group mb-2">
+		<div class="input-group-append">
+		<span class="input-group-text"><i class="fas fa-key"></i></span>
+		</div>
+		<input type="password" name="password" class="form-control input_pass" value="" placeholder="password"  value={this.state.password}
+                onChange={this.handleChange}/>
+		</div>
+		<div class="form-group">
+		<div class="custom-control custom-checkbox">
+		<input type="checkbox" class="custom-control-input" id="customControlInline" />
+		<label class="custom-control-label" for="customControlInline">Remember Password</label>
+		</div>
+		</div>
+		</form>
+		</div>
+		<div class="d-flex justify-content-center mt-3 login_container">
+		<button type="button" name="button" class="btn login_btn"
+            onClick={this.login} >Login</button>
+		</div>
+		<div class="mt-4">
+		<div class="d-flex justify-content-center links">
+	Don't have an account? <a href="/SignUp" class="ml-2">Sign Up</a>
+		</div>
+		<div class="d-flex justify-content-center links">
+		<a href="#">Forgot your password?</a>
+		</div>
+		</div>
+		</div>
+		</div>
+  </div>
   );
 }
 }
