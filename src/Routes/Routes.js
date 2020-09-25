@@ -40,11 +40,11 @@ class Routes extends Component {
             <Route exact path="/SignUp" component={SignUp} />    
             <Route exact path="/SignIn" component={SignIn} />     
  
-            <Route exact path="/Dashboard">
-  {this.state.user ? <Redirect to="/Dashboard" /> : <SignIn/>}
-</Route>
-<Route exact path="/Dashboard" component={Dashboard} />
+            <Route exact path="/Dashboard"  >
+            {this.state.user ? <Redirect to="/Dashboard" /> : <Redirect to="/SignIn"/>}
+            </Route>
 
+            <Route exact path="/Dashboard" component={Dashboard} />
       
             </Router>
 
