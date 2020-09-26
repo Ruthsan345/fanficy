@@ -38,38 +38,7 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    height: '100vh',
-  },
-  image: {
-    backgroundImage: 'url(https://source.unsplash.com/random)',
-    backgroundRepeat: 'no-repeat',
-    backgroundColor:
-      theme.palette.mode === 'light'
-        ? theme.palette.grey[40]
-        : theme.palette.grey[700],
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  },
-  paper: {
-    margin: theme.spacing(8, 4),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
+
 class LoginU extends React.Component{
   constructor(props){
     super(props);
@@ -78,7 +47,8 @@ class LoginU extends React.Component{
     this.state={
       username:'',
       bio:'',
-      date:''
+      date:'',
+
     }
   }
 
@@ -93,10 +63,14 @@ class LoginU extends React.Component{
       username:this.state.username,
       bio:this.state.bio,
       dob:this.state.date,
-      email:email
+      email:email,
+      id:firebase.auth().currentUser.uid
     }).then((u)=>{
+     
       alert("Login Sucessfull");
       this.props.history.push("/")
+      var mal=firebase.auth().currentUser.uid
+      reactLocalStorage.setObject('id',mal );
     }).catch((error)=>{
       alert("Invalid Credentials");
       console.log(error);

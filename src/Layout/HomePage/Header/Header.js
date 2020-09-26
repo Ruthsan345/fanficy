@@ -67,7 +67,7 @@ function Header(props) {
         </Link>
         &nbsp;  &nbsp;
        
-        <Link href="/SignUp">
+        <Link href="/Profile">
        <Button  variant="outlined" size="small">
           profile
         </Button>
