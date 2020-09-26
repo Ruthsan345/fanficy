@@ -47,9 +47,11 @@ class Profile extends React.Component{
     <Form inline>
       <FormControl type="text" placeholder="Search" className="mr-sm-2" />
       <Button variant="outline-info">Search</Button>
+      <Nav.Link href="/EditFile">Edit Profile</Nav.Link>
     </Form>
   </Navbar>
-  
+  <br/>
+  <br/>
   {this.state.users &&
   this.state.users.map(userr =>{
       return(
