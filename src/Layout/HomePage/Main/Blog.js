@@ -1,4 +1,4 @@
-import * as React from 'react';
+import  React,{Component} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
@@ -13,7 +13,9 @@ import Category from './Category';
 import Main from './Main';
 import AppBar from '@material-ui/core/AppBar';
 import Footer from '../Footer/Footer';
-import Album from '../Album/Album'
+import Album from '../Album/Album';
+import fire from '../../../config/firebase';
+
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
     marginTop: theme.spacing(3),
@@ -86,8 +88,46 @@ const sidebar = {
   ],
 };
 
-export default function Blog() {
-  const classes = useStyles();
+const db =fire.firestore()
+
+class Blog extends Component{
+    constructor(props){
+        super(props);
+        this.state={
+            isLoaded: false,
+            article:[]
+        }
+    }
+
+    componentDidMount(){
+        this.getMyArticles()
+    }
+    getMyArticles=()=>{
+        db
+            .collection('Articles')
+            .limit(8)
+            .get()
+            .then(docs => {
+                if(!docs.empty){
+                    let allArticles=[]
+                    docs.forEach( function(doc)  {
+                        const article ={
+                            id:doc.id,
+                            ...doc.data()
+                        }
+                        allArticles.push(article)
+                    })
+                    this.setState({
+                        articles: allArticles
+                    },()=>{
+                        this.setState({
+                            isLoaded:true
+                        })
+                    })
+                }
+            })
+        }
+        render(){
 
   return (
     <React.Fragment>
@@ -104,9 +144,22 @@ export default function Blog() {
        
         </main>
       </Container>
-     
-      
-      <Album></Album>
+      <Container>
+                    {
+                        this.state.isLoaded?
+                        this.state.articles.map((article,index)=>{
+                            return(
+                                <Album
+                                    key={index}
+                                    data={article}
+                             />
+
+
+                            )
+                        })
+                        :''
+                    }
+                </Container>
       <AppBar component="h1" variant="h5" position="static" align="center" color="inherit">
         Category
      </AppBar>
@@ -118,3 +171,5 @@ export default function Blog() {
     </React.Fragment>
   );
 }
+}
+export default Blog;

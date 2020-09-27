@@ -12,7 +12,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
+import {Link} from 'react-router-dom';
 import firebase from '../../../config/firebase'
 
 const db =firebase.firestore()
@@ -49,52 +49,56 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4, 5, 6];
+const cards = [1,2,3];
 
+export function timeStampToString(ts)  {
+  const date=new Date(ts*1000)
+  return date.getFullYear()+'/'+ (date.getMonth()+1) +'/'+date.getDate()
+ }
 
-export default function Album() {
+ 
+ const Album= (props) => {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
-      <CssBaseline />
     
-      <main>
-        {/* Hero unit */}
-       
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
             {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+              <Grid item key={5} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://source.unsplash.com/random"
+                    image="https://placeimg.com/325/180/any"
                     title="Image title"
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                    {props.data.title}
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe
-                      the content.
+                    {props.data.categoryLabel}
+                    <br></br>
+                    { timeStampToString(props.data.createDate.seconds)}
                     </Typography>
                   </CardContent>
                   <CardActions>
+                  <Link to={{
+                    pathname:'/Blog/' + props.data.BlogId,
+                    state: {blog:props.data },
+                    data:{blog:props.data}
+                    }} >
                     <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
+                  </Link>
                   </CardActions>
                 </Card>
               </Grid>
             ))}
           </Grid>
         </Container>
-      </main>
-      {/* Footer */}
-     
-      {/* End footer */}
-    </React.Fragment>
+      
   );
 }
+
+export default  Album;

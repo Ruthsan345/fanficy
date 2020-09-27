@@ -79,7 +79,7 @@ class Login extends React.Component{
     e.preventDefault();
     fire.auth().signInWithEmailAndPassword(this.state.email.trim(),this.state.password).then((u)=>{
       alert("Login Sucessfull");
-     // reactLocalStorage.setObject('textval', this.state.email);
+      // reactLocalStorage.setObject('textval', this.state.email);
       this.props.history.push("/")
     }).catch((error)=>{
       alert("Invalid Credentials");

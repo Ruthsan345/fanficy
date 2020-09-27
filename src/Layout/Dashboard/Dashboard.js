@@ -24,7 +24,6 @@ import { render } from '@testing-library/react';
 import { firestore } from 'firebase';
 import SignIn from '../Auth/SignIn/SignIn';
 import SignUp from '../Auth/SignUp/SignUp';
-let id=0;
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -38,38 +37,7 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    height: '100vh',
-  },
-  image: {
-    backgroundImage: 'url(https://source.unsplash.com/random)',
-    backgroundRepeat: 'no-repeat',
-    backgroundColor:
-      theme.palette.mode === 'light'
-        ? theme.palette.grey[40]
-        : theme.palette.grey[700],
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  },
-  paper: {
-    margin: theme.spacing(8, 4),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
+
 class LoginU extends React.Component{
   constructor(props){
     super(props);
@@ -83,18 +51,18 @@ class LoginU extends React.Component{
   }
 
   loginU(e){
-     id=id+1;
     e.preventDefault();
     const email = reactLocalStorage.getObject('textval');
-    console.log(id);
     console.log(email);
     console.log(this.state.email);
+
     firestore().collection('userss').doc(firebase.auth().currentUser.uid).set({
       username:this.state.username,
       bio:this.state.bio,
       dob:this.state.date,
       email:email
     }).then((u)=>{
+
       alert("Login Sucessfull");
       this.props.history.push("/")
     }).catch((error)=>{
@@ -109,6 +77,7 @@ handleChange(e){
 render() {
 
   return (
+
     <div class="container h-100">
 		<div class="d-flex justify-content-center h-100">
 		<div class="user_card">
