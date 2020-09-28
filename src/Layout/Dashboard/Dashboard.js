@@ -50,7 +50,7 @@ class LoginU extends React.Component{
 
     }
   }
-
+ 
   loginU(e){
     e.preventDefault();
     const email = reactLocalStorage.getObject('textval');
@@ -66,7 +66,7 @@ class LoginU extends React.Component{
     }).then((u)=>{
      
       alert("Login Sucessfull");
-      this.props.history.push("/")
+      this.props.history.push("/Blog1")
       var mal=firebase.auth().currentUser.uid
       reactLocalStorage.setObject('id',mal );
     }).catch((error)=>{

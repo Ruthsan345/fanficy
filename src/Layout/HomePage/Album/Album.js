@@ -74,19 +74,16 @@ export function timeStampToString(ts)  {
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                    {props.data.title}
+                    {}
                     </Typography>
                     <Typography>
-                    {props.data.categoryLabel}
+                    {}
                     <br></br>
-                    { timeStampToString(props.data.createDate.seconds)}
+                    { }
                     </Typography>
                   </CardContent>
                   <CardActions>
-                  <Link to={{
-                    pathname:'/Blog/' + props.data.BlogId,
-                    state: {blog:props.data }
-                    }} >
+                  <Link  >
                     <Button size="small">View</Button>
                   </Link>
                   </CardActions>

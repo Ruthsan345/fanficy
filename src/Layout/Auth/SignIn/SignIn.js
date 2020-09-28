@@ -82,7 +82,7 @@ class Login extends React.Component{
      // reactLocalStorage.setObject('textval', this.state.email);
      var mal=fire.auth().currentUser.uid
       reactLocalStorage.setObject('id',mal );
-      this.props.history.push("/")
+      this.props.history.push("/Blog1")
     }).catch((error)=>{
       alert("Invalid Credentials");
       console.log(error);

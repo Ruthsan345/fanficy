@@ -2,9 +2,9 @@ import * as React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../index.css';
 import {reactLocalStorage} from 'reactjs-localstorage';
+import { firestore } from 'firebase';
 import firebase from '../../../config/firebase';
 import { Form,FormControl,Button,Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
-import { firestore } from 'firebase';
 import Link from '@material-ui/core/Link';
 import Avatar from '@material-ui/core/Avatar';
 //import { Button, Navbar } from 'react-bootstrap'
@@ -62,8 +62,6 @@ class Profile extends React.Component{
                     <div className="pull-left">
                            <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" />
 
-                        
-
                     </div>
                 } 
                 id="basic-nav-dropdown">
@@ -72,6 +70,7 @@ class Profile extends React.Component{
                 <NavDropdown.Item onClick={this.logout} href="">Log Out</NavDropdown.Item>
             </NavDropdown>
         </Nav>
+  
   </Navbar>
   <br/>
   <br/>
@@ -81,7 +80,7 @@ class Profile extends React.Component{
 
 
             <div class="container1 emp-profile">
-            <form method="post">
+            <form >
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
@@ -109,13 +108,15 @@ class Profile extends React.Component{
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <Link href="/AddBlog">
+                    <div class="col-sm-12">
                     <Link href="/EditFile">
-       <Button class="profile-edit-btn" name="btnAddMore" variant="success" size="small">
-       Edit Profile
+       <Button class="profile-edit-btn" name="btnAddMore" variant="success" size="large">
+       Edit Bio
         </Button>
         </Link>
                     </div>
+                    </Link>
                 </div>
                 <div class="row">
                     <div class="col-md-4">

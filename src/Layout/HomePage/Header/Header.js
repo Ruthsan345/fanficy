@@ -38,7 +38,7 @@ function Header(props) {
     <React.Fragment>
   
       <Toolbar className={classes.toolbar}>
-        <Button size="small">Subscribe</Button>
+        <Button size="small">Subscrbe</Button>
         <Typography
           component="h2"
           variant="h5"
@@ -65,11 +65,7 @@ function Header(props) {
         </Link>
         &nbsp;  &nbsp;
        
-        <Link href="/Profile">
-       <Button  variant="outlined" size="small">
-          profile
-        </Button>
-        </Link>
+        
       </Toolbar>
       <Toolbar
         component="nav"

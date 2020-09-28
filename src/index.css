@@ -11,7 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.NavLink{
+  color: white !important;
 
+}
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
 
 .user_card {
@@ -143,7 +146,13 @@ input[type=submit]:hover {
   width: 80%;
 }
 
-
+.container2 {
+  margin: auto;
+  border-radius: 5px;
+  background-color: #424244;
+  padding: 20px;
+  width: 90%;
+}
 
 
 
@@ -173,4 +182,3 @@ input[type=submit]:hover {
     margin-top: 0;
   }
 }
-

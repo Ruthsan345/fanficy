@@ -1,16 +1,20 @@
 import * as firebase from 'firebase'
+import 'firebase/storage';
+
+
+
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCS1gPavSW9l_u3dMZJQqEt8IF0vQnm5Gc",
-  authDomain: "react-my-mini-blog-c3427.firebaseapp.com",
-  databaseURL: "https://react-my-mini-blog-c3427.firebaseio.com",
-  projectId: "react-my-mini-blog-c3427",
-  storageBucket: "react-my-mini-blog-c3427.appspot.com",
-  messagingSenderId: "62535553341",
-  appId: "1:62535553341:web:adee2b6373e1eef91c3554"
+  apiKey: "AIzaSyAxWvZMIu2PGnkN6sZUIZpM1j-M0BTvQ3Q",
+  authDomain: "react-blog-ac333.firebaseapp.com",
+  databaseURL: "https://react-blog-ac333.firebaseio.com",
+  projectId: "react-blog-ac333",
+  storageBucket: "react-blog-ac333.appspot.com",
+  messagingSenderId: "257793304669",
+  appId: "1:257793304669:web:a6dead157d09c5ffb4c5b4"
   };
 
   firebase.initializeApp(firebaseConfig)
-  firebase.firestore()
-
+  const storage = firebase.storage();
+  export {storage};
   export default firebase
