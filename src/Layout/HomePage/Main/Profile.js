@@ -2,9 +2,11 @@ import * as React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../index.css';
 import {reactLocalStorage} from 'reactjs-localstorage';
+import { firestore } from 'firebase';
 import firebase from '../../../config/firebase';
 import { Form,FormControl,Button,Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
-import { firestore } from 'firebase';
+
+import Link from '@material-ui/core/Link';
 
 
 //import { Button, Navbar } from 'react-bootstrap'
@@ -48,6 +50,7 @@ class Profile extends React.Component{
       <FormControl type="text" placeholder="Search" className="mr-sm-2" />
       <Button variant="outline-info">Search</Button>
       <Nav.Link href="/EditFile">Edit Profile</Nav.Link>
+      <Nav.Link href="/AddBlog">AddBlog</Nav.Link>
     </Form>
   </Navbar>
   <br/>
@@ -58,7 +61,7 @@ class Profile extends React.Component{
 
 
             <div class="container emp-profile">
-            <form method="post">
+            <form >
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
@@ -88,9 +91,11 @@ class Profile extends React.Component{
                             </ul>
                         </div>
                     </div>
+                    <Link href="/AddBlog">
                     <div class="col-md-2">
                         <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
                     </div>
+                    </Link>
                 </div>
                 <div class="row">
                     <div class="col-md-4">

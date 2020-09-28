@@ -51,7 +51,7 @@ class LoginU extends React.Component{
 
     }
   }
-
+ 
   loginU(e){
      id=id+1;
     e.preventDefault();
@@ -68,7 +68,7 @@ class LoginU extends React.Component{
     }).then((u)=>{
      
       alert("Login Sucessfull");
-      this.props.history.push("/")
+      this.props.history.push("/Blog1")
       var mal=firebase.auth().currentUser.uid
       reactLocalStorage.setObject('id',mal );
     }).catch((error)=>{
