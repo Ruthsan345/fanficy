@@ -1,7 +1,7 @@
 import * as React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {reactLocalStorage} from 'reactjs-localstorage';
-
+//import '../../../index.css';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -79,7 +79,9 @@ class Login extends React.Component{
     e.preventDefault();
     fire.auth().signInWithEmailAndPassword(this.state.email.trim(),this.state.password).then((u)=>{
       alert("Login Sucessfull");
-      // reactLocalStorage.setObject('textval', this.state.email);
+     // reactLocalStorage.setObject('textval', this.state.email);
+     var mal=fire.auth().currentUser.uid
+      reactLocalStorage.setObject('id',mal );
       this.props.history.push("/")
     }).catch((error)=>{
       alert("Invalid Credentials");

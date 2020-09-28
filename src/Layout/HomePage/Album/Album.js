@@ -63,7 +63,6 @@ export function timeStampToString(ts)  {
   return (
     
         <Container className={classes.cardGrid} maxWidth="md">
-          {/* End hero unit */}
           <Grid container spacing={4}>
             {cards.map((card) => (
               <Grid item key={5} xs={12} sm={6} md={4}>
@@ -86,8 +85,7 @@ export function timeStampToString(ts)  {
                   <CardActions>
                   <Link to={{
                     pathname:'/Blog/' + props.data.BlogId,
-                    state: {blog:props.data },
-                    data:{blog:props.data}
+                    state: {blog:props.data }
                     }} >
                     <Button size="small">View</Button>
                   </Link>

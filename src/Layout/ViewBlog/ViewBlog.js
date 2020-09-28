@@ -49,7 +49,9 @@ componentDidMount(){
            <Header title="Blog" sections={sections}/>
         <div>
        
-                <center>{parse(this.state.blog.content)}</center>  
+                <center>{parse(this.state.blog.categoryLabel)}</center>  
+
+                <center>{parse(this.state.blog.content)}</center>
              
               
 

@@ -46,7 +46,8 @@ class LoginU extends React.Component{
     this.state={
       username:'',
       bio:'',
-      date:''
+      date:'',
+
     }
   }
 
@@ -60,11 +61,14 @@ class LoginU extends React.Component{
       username:this.state.username,
       bio:this.state.bio,
       dob:this.state.date,
-      email:email
+      email:email,
+      id:firebase.auth().currentUser.uid
     }).then((u)=>{
-
+     
       alert("Login Sucessfull");
       this.props.history.push("/")
+      var mal=firebase.auth().currentUser.uid
+      reactLocalStorage.setObject('id',mal );
     }).catch((error)=>{
       alert("Invalid Credentials");
       console.log(error);

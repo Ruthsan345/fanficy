@@ -3,10 +3,12 @@ import {BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Blog from '../Layout/HomePage/Main/Blog';
 import SignUp from '../Layout/Auth/SignUp/SignUp';
 import SignIn from '../Layout/Auth/SignIn/SignIn';
-import Dashboard from '../Layout/Dashboard/Dashboard';
+import Profile from '../Layout/HomePage/Main/Profile'
 import ViewBlog from '../Layout/ViewBlog/ViewBlog'
+import Dashboard from '../Layout/Dashboard/Dashboard'
 import fire from '../config/firebase';
 import  { Redirect } from 'react-router-dom' 
+import EditFile from "../../src/Layout/HomePage/Main/EditFile"
 
 
   
@@ -39,7 +41,10 @@ class Routes extends Component {
             <Router>
             <Route exact path="/" component={Blog} />       
             <Route exact path="/SignUp" component={SignUp} />    
-            <Route exact path="/SignIn" component={SignIn} />     
+            <Route exact path="/SignIn" component={SignIn} /> 
+            <Route exact path="/Profile" component={Profile} /> 
+           
+            <Route exact path="/EditFile" component={EditFile} />   
  
             <Route exact path="/Dashboard"  >
             {this.state.user ? <Redirect to="/Dashboard" /> : <Redirect to="/SignIn"/>}
