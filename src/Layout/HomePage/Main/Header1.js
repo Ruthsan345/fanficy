@@ -9,10 +9,15 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import SearchBar from "material-ui-search-bar";
 import Menu from '@material-ui/core/Menu';
+import PersonIcon from '@material-ui/icons/Person';
+import PostAddIcon from '@material-ui/icons/PostAdd';
+import HelpIcon from '@material-ui/icons/Help';
+import ChatIcon from '@material-ui/icons/Chat';
 import MenuItem from '@material-ui/core/MenuItem';
+import EditIcon from '@material-ui/icons/Edit';
 import { NavLink ,Router,Redirect } from 'react-router-dom';
 import { Form,FormControl,Navbar, Nav, NavItem, NavDropdown } from 'react-bootstrap';
-
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 //import Routes from '../../../Routes/Routes';
 import Avatar from '@material-ui/core/Avatar';
 
@@ -79,9 +84,12 @@ function Header(props) {
   open={Boolean(anchorEl)}
   onClose={handleClose}
 >
-<MenuItem onClick={handleClose}><NavLink class="NavLink" to="/Profile"> My Profile </NavLink></MenuItem>       
-  <MenuItem  onClick={handleClose}> <NavLink  class="NavLink" to="#"> Support </NavLink> </MenuItem>
-  <MenuItem onClick={handleClose}><NavLink  class="NavLink" to="/"> Logout </NavLink></MenuItem>
+<MenuItem onClick={handleClose}><NavLink class="NavLink" to="/Profile"> <PersonIcon/> &nbsp; My Profile  </NavLink></MenuItem>     
+<MenuItem onClick={handleClose}><NavLink class="NavLink" to="/AddBlog"> <PostAddIcon/> &nbsp;New Article  </NavLink></MenuItem>       
+<MenuItem onClick={handleClose}><NavLink class="NavLink" to="#"><EditIcon/> &nbsp;Manage Articles</NavLink></MenuItem>       
+<MenuItem onClick={handleClose}><NavLink class="NavLink" to="#"><ChatIcon/> &nbsp;Coming Soon</NavLink></MenuItem>       
+<MenuItem  onClick={handleClose}> <NavLink  class="NavLink" to="#"> <HelpIcon/> &nbsp; Support </NavLink> </MenuItem>
+<MenuItem onClick={handleClose}><NavLink  class="NavLink" to="/"><ExitToAppIcon/> &nbsp; Logout </NavLink></MenuItem>
 </Menu>
 
       </Toolbar>

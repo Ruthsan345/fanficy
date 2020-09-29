@@ -167,7 +167,7 @@ class AddBlog extends React.Component{
                                             <label class="form-control-label">Title</label>
                                             <input type="text" name="title" value={this.state.title}  placeholder="Your content.." onChange={this.handleChange}/>
                                         </div> 
-                                        <div class="form-group">
+                                        <div class="form-group ">
                                         <label for="fname">Choose category</label>                                      
                                         <select id = "dropdown"  name="category" value={this.state.category} onChange={this.handleChange}>
                                         <option value="Love">Love</option>
@@ -179,7 +179,7 @@ class AddBlog extends React.Component{
 
                                     </select>
                                     </div>
-                                        <div class="form-group">
+                                        <div class="form-group containerx">
                                             <label class="form-control-label">Write your Content here</label>
                                             <CKEditor
                                                 content={this.state.content}
@@ -190,13 +190,14 @@ class AddBlog extends React.Component{
                                         </div>
             
                                       
-                                           
+                                           <br/>
+                                           <br/>
                                             <div class="col-lg-6 login-btm login-button float-right text-right">
-                                            <Link href="/profile">
+                                            <Link href="/blog1">
                                             <button alignRight type="button" class="btn btn-outline-danger ">Cancel</button>
                                            </Link>
                                               &nbsp;&nbsp;&nbsp;&nbsp;
-                                                <button type="submit" onClick={this.editerr} name='submit' class="btn btn-outline-primary float-right">Submit</button>
+                                                <button type="submit" onClick={this.editerr} name='submit' class="btn btn-outline-success float-right">Submit</button>
                                             </div>
                                     </form>
                                 </div>
@@ -204,16 +205,12 @@ class AddBlog extends React.Component{
                             <div class="col-lg-3 col-md-2"></div>
                         </div>
                     </div>
-            
-            
-            
-            
-            
-            
-            
+    
                         </div>
-                    
-                    <EditorPreview content={this.state.content} />
+                        <br/>
+                                           <br/>
+                                           <div class="container1"> <center><EditorPreview content={this.state.content} /></center> </div>
+                  
       
           </>
         )

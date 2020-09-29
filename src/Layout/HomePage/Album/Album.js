@@ -67,23 +67,31 @@ export function timeStampToString(ts)  {
             {cards.map((card) => (
               <Grid item key={5} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
+                  <Link to={{
+                    pathname:'Blog/'+props.data.blogid,
+                    state:{blog:props.data}
+                  }}>
                   <CardMedia
                     className={classes.cardMedia}
                     image="https://placeimg.com/325/180/any"
                     title="Image title"
                   />
+                  </Link>
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                    {}
+                    {props.data.title}
                     </Typography>
                     <Typography>
-                    {}
+                  
                     <br></br>
-                    { }
+                    { props.data.category}
                     </Typography>
                   </CardContent>
                   <CardActions>
-                  <Link  >
+                  <Link to={{
+                    pathname:'Blog/'+props.data.blogid,
+                    state:{blog:props.data}
+                    }} >
                     <Button size="small">View</Button>
                   </Link>
                   </CardActions>
