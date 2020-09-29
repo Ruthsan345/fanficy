@@ -24,7 +24,6 @@ import { render } from '@testing-library/react';
 import { firestore } from 'firebase';
 import SignIn from '../Auth/SignIn/SignIn';
 import SignUp from '../Auth/SignUp/SignUp';
-let id=0;
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -53,18 +52,18 @@ class LoginU extends React.Component{
   }
  
   loginU(e){
-     id=id+1;
     e.preventDefault();
     const email = reactLocalStorage.getObject('textval');
-    console.log(id);
     console.log(email);
     console.log(this.state.email);
+
     firestore().collection('userss').doc(firebase.auth().currentUser.uid).set({
       username:this.state.username,
       bio:this.state.bio,
       dob:this.state.date,
       email:email,
-      id:firebase.auth().currentUser.uid
+      id:firebase.auth().currentUser.uid,
+      url:'https://storage.needpix.com/rsynced_images/profile-2398782_1280.png'
     }).then((u)=>{
      
       alert("Login Sucessfull");
@@ -83,6 +82,7 @@ handleChange(e){
 render() {
 
   return (
+
     <div class="container h-100">
 		<div class="d-flex justify-content-center h-100">
 		<div class="user_card">

@@ -5,10 +5,8 @@ import {reactLocalStorage} from 'reactjs-localstorage';
 import { firestore } from 'firebase';
 import firebase from '../../../config/firebase';
 import { Form,FormControl,Button,Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
-
 import Link from '@material-ui/core/Link';
-
-
+import Avatar from '@material-ui/core/Avatar';
 //import { Button, Navbar } from 'react-bootstrap'
 
 class Profile extends React.Component{
@@ -35,6 +33,13 @@ class Profile extends React.Component{
         })
         .catch(error=>console.log(error))
     }
+    logout() {
+        firebase.auth.signOut().then((result) => {
+          this.setState({
+            user: null
+          })
+        })
+      }
     render(){
         return(
             <div>
@@ -49,112 +54,118 @@ class Profile extends React.Component{
     <Form inline>
       <FormControl type="text" placeholder="Search" className="mr-sm-2" />
       <Button variant="outline-info">Search</Button>
-      <Nav.Link href="/EditFile">Edit Profile</Nav.Link>
-      <Nav.Link href="/AddBlog">AddBlog</Nav.Link>
-    </Form>
+      </Form>
+
+         <Nav pullRight>
+         {
+      
+      this.state.users &&
+      this.state.users.map(userr1 =>{
+          console.log(userr1.url)
+          return(
+            <NavDropdown alignRight eventKey={0} 
+                title={
+                    <div className="pull-left">
+                           <Avatar alt="Remy Sharp" src={userr1.url} />
+
+                    </div>
+                } 
+                id="basic-nav-dropdown">
+
+                <NavDropdown.Item href="/Profile">Profile</NavDropdown.Item>
+                <NavDropdown.Item onClick={this.logout} href="">Log Out</NavDropdown.Item>
+            </NavDropdown>
+             )
+            })
+          }   
+        </Nav>
+  
   </Navbar>
   <br/>
   <br/>
-  {this.state.users &&
+  {
+      
+  this.state.users &&
   this.state.users.map(userr =>{
+      console.log(userr.url)
       return(
 
 
-            <div class="container emp-profile">
+            <div class="container1 emp-profile">
             <form >
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
-                            <div class="file btn btn-lg btn-primary">
-                                Change Photo
-                                <input type="file" name="file"/>
-                            </div>
+                            <img src={userr.url} class="circular_image"alt=""/>
+                            
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h5>
-                                        Kshiti Ghelani
+                                    {userr.username}
                                     </h5>
                                     <h6>
-                                        Web Developer and Designer
+                                    {userr.email}
                                     </h6>
-                                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+                                    <p class="proile-rating">DOB : <span>{userr.dob}</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
-                                </li>
+                               
                             </ul>
                         </div>
                     </div>
                     <Link href="/AddBlog">
-                    <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                    <div class="col-sm-12">
+                    <Link href="/EditFile">
+       <Button class="profile-edit-btn" name="btnAddMore" variant="success" size="large">
+       Edit Bio
+        </Button>
+        </Link>
                     </div>
                     </Link>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-work">
-                            <p>WORK LINK</p>
-                            <a href="">Website Link</a><br/>
-                            <a href="">Bootsnipp Profile</a><br/>
-                            <a href="">Bootply Profile</a>
-                            <p>SKILLS</p>
-                            <a href="">Web Designer</a><br/>
-                            <a href="">Web Developer</a><br/>
-                            <a href="">WordPress</a><br/>
-                            <a href="">WooCommerce</a><br/>
-                            <a href="">PHP, .Net</a><br/>
+                    
                         </div>
                     </div>
                     <div class="col-md-8">
                         <div class="tab-content profile-tab" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <label>User Id</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Kshiti123</p>
+                                         
+                                            <div class="col-md-8">
+      <p>{userr.bio}</p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Name</label>
+                                                
                                             </div>
                                             <div class="col-md-6">
-      <p>{userr.username}</p>
+      <p></p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Email</label>
+                                        
                                             </div>
                                             <div class="col-md-6">
-      <p>{userr.email}</p>
+      <p></p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Dob</label>
                                             </div>
                                             <div class="col-md-6">
-      <p>{userr.dob}</p>
+      <p></p>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>bio</label>
-                                            </div>
-                                            <div class="col-md-6">
-      <p>{userr.bio}r</p>
-                                            </div>
-                                        </div>
+                                    
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row">
@@ -213,7 +224,8 @@ class Profile extends React.Component{
                   
       )
     })
-  }       
+  }   
+      
         </div>
         );
     }

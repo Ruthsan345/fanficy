@@ -1,4 +1,4 @@
-import  React,{Component} from 'react';
+import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
@@ -6,16 +6,14 @@ import Container from '@material-ui/core/Container';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import Header from '../Header/Header';
+import Header1 from './Header1';
 import MainFeaturedPost from './MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
 import Category from './Category';
 import Main from './Main';
 import AppBar from '@material-ui/core/AppBar';
 import Footer from '../Footer/Footer';
-import Album from '../Album/Album';
-import fire from '../../../config/firebase';
-
+import Album from '../Album/Album'
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
     marginTop: theme.spacing(3),
@@ -81,55 +79,21 @@ const sidebar = {
     { title: 'May 1999', url: '#' },
     { title: 'April 1999', url: '#' },
   ],
-
+  social: [
+    { name: 'GitHub', icon: GitHubIcon },
+    { name: 'Twitter', icon: TwitterIcon },
+    { name: 'Facebook', icon: FacebookIcon },
+  ],
 };
 
-const db =fire.firestore()
-
-class Blog extends Component{
-    constructor(props){
-        super(props);
-        this.state={
-            isLoaded: false,
-            article:[]
-        }
-    }
-
-    componentDidMount(){
-        this.getMyArticles()
-    }
-    getMyArticles=()=>{
-        db
-            .collection('Articles')
-            .limit(8)
-            .get()
-            .then(docs => {
-                if(!docs.empty){
-                    let allArticles=[]
-                    docs.forEach( function(doc)  {
-                        const article ={
-                            id:doc.id,
-                            ...doc.data()
-                        }
-                        allArticles.push(article)
-                    })
-                    this.setState({
-                        articles: allArticles
-                    },()=>{
-                        this.setState({
-                            isLoaded:true
-                        })
-                    })
-                }
-            })
-        }
-        render(){
+export default function Blog() {
+  const classes = useStyles();
 
   return (
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth="lg">
-        <Header title="Blog" sections={sections} />
+        <Header1 title="Blog" sections={sections} />
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
           <Grid container spacing={4}>
@@ -140,22 +104,9 @@ class Blog extends Component{
        
         </main>
       </Container>
-      <Container>
-                    {
-                        this.state.isLoaded?
-                        this.state.articles.map((article,index)=>{
-                            return(
-                                <Album
-                                    key={index}
-                                    data={article}
-                             />
-
-
-                            )
-                        })
-                        :''
-                    }
-                </Container>
+     
+      
+      <Album></Album>
       <AppBar component="h1" variant="h5" position="static" align="center" color="inherit">
         Category
      </AppBar>
@@ -167,5 +118,3 @@ class Blog extends Component{
     </React.Fragment>
   );
 }
-}
-export default Blog;

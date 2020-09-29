@@ -14,10 +14,10 @@ const theme = React.useMemo(
   () =>
     createMuiTheme({
       palette: {
-        type: prefersDarkMode ? 'dark' : 'light',
+        type: 'dark',
       },
     }),
-  [prefersDarkMode],
+ 
 );
 
    return(

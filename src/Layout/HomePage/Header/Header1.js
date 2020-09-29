@@ -33,12 +33,37 @@ function Header(props) {
   const classes = useStyles();
   const { sections, title } = props;
 
+  componentDidMount()
+    {
+        
+        const id = reactLocalStorage.getObject('id');
+        console.log("mounted");
+        console.log(id)
+        
+        firestore().collection('userss').where('id','==',id)
+        .get()
+        .then(snapshot =>{
+            const users=[]
+            snapshot.forEach(doc=>{
+                const data=doc.data()
+                users.push(data)
+            })
+            this.setState({users:users})
+            console.log(snapshot)
+        })
+        .catch(error=>console.log(error))
+    }
+
   return (
-    
+   
     <React.Fragment>
-  
+      
+  <div className="pull-left">
+                           <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" />
+
+                    </div>
       <Toolbar className={classes.toolbar}>
-        <Button size="small">Subscrbe</Button>
+        <Button size="small">Subscibe</Button>
         <Typography
           component="h2"
           variant="h5"
@@ -48,25 +73,28 @@ function Header(props) {
           className={classes.toolbarTitle}
         >
         </Typography>
-        <SearchBar/>
+        <SearchBar
+  
+  />
   &nbsp;  &nbsp;
 
-<Link href="/SignIn">
+<Link href="/">
        <Button  variant="outlined" size="small">
-         Log In
+         Log Out
         </Button>
         </Link>
   &nbsp;  &nbsp;
+
        
-       <Link href="/SignUp">
+       <Link href="/Profile">
        <Button  variant="outlined" size="small">
-          Sign up
+          Profile
         </Button>
         </Link>
-        &nbsp;  &nbsp;
-       
-        
       </Toolbar>
+   
+
+
       <Toolbar
         component="nav"
         variant="dense"
@@ -85,6 +113,7 @@ function Header(props) {
           </Link>
         ))}
       </Toolbar>
+      
 
     </React.Fragment>
   );

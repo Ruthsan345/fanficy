@@ -8,8 +8,13 @@ import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import SearchBar from "material-ui-search-bar";
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import { NavLink ,Router,Redirect } from 'react-router-dom';
+import { Form,FormControl,Navbar, Nav, NavItem, NavDropdown } from 'react-bootstrap';
+
 //import Routes from '../../../Routes/Routes';
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -30,13 +35,24 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Header(props) {
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const classes = useStyles();
   const { sections, title } = props;
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
 
   return (
     
     <React.Fragment>
-  
+
+
       <Toolbar className={classes.toolbar}>
         <Button size="small">Subscrbe</Button>
         <Typography
@@ -48,24 +64,26 @@ function Header(props) {
           className={classes.toolbarTitle}
         >
         </Typography>
-        <SearchBar/>
+        <SearchBar
+  
+  />
   &nbsp;  &nbsp;
+  <div className="pull-left">
+                           <Avatar id="simple-menu" onClick={handleClick} alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" />
+  </div>
 
-<Link href="/SignIn">
-       <Button  variant="outlined" size="small">
-         Log In
-        </Button>
-        </Link>
-  &nbsp;  &nbsp;
-       
-       <Link href="/SignUp">
-       <Button  variant="outlined" size="small">
-          Sign up
-        </Button>
-        </Link>
-        &nbsp;  &nbsp;
-       
-        
+  <Menu
+  id="simple-menu"
+  anchorEl={anchorEl}
+  keepMounted
+  open={Boolean(anchorEl)}
+  onClose={handleClose}
+>
+<MenuItem onClick={handleClose}><NavLink class="NavLink" to="/Profile"> My Profile </NavLink></MenuItem>       
+  <MenuItem  onClick={handleClose}> <NavLink  class="NavLink" to="#"> Support </NavLink> </MenuItem>
+  <MenuItem onClick={handleClose}><NavLink  class="NavLink" to="/"> Logout </NavLink></MenuItem>
+</Menu>
+
       </Toolbar>
       <Toolbar
         component="nav"

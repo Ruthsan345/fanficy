@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Markdown from './Markdown';
-
+import fire from '../../../config/firebase';
 const useStyles = makeStyles((theme) => ({
   markdown: {
     ...theme.typography.body2,

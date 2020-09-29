@@ -4,10 +4,11 @@ import Blog from '../Layout/HomePage/Main/Blog';
 import Blog1 from '../Layout/HomePage/Main/Blog1';
 import SignUp from '../Layout/Auth/SignUp/SignUp';
 import SignIn from '../Layout/Auth/SignIn/SignIn';
-import Profile from '../Layout/HomePage/Main/Profile';
-import Header1 from '../Layout/HomePage/Header/Header1';
+import Profile from '../Layout/HomePage/Main/Profile'
+import ViewBlog from '../Layout/ViewBlog/ViewBlog'
+import Dashboard from '../Layout/Dashboard/Dashboard'
+import Header1 from '../Layout/HomePage/Main/Header1';
 import AddBlog from '../Layout/HomePage/Main/AddBlog';
-import Dashboard from '../Layout/Dashboard/Dashboard';
 import fire from '../config/firebase';
 import  { Redirect } from 'react-router-dom' 
 import EditFile from "../../src/Layout/HomePage/Main/EditFile"
@@ -52,7 +53,7 @@ class Routes extends Component {
             <Route exact path="/Dashboard"  >
             {this.state.user ? <Redirect to="/Dashboard" /> : <Redirect to="/SignIn"/>}
             </Route>
-
+            <Route path="/Blog/:id" component={ViewBlog}/>
             <Route exact path="/Dashboard" component={Dashboard} />
       
             </Router>

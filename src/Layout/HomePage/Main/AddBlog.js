@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import {storage} from '../../../config/firebase';
 import {reactLocalStorage} from 'reactjs-localstorage';
 import { firestore } from 'firebase';
+import CloseIcon from '@material-ui/icons/Close';
 
 
 
@@ -131,64 +132,90 @@ class AddBlog extends React.Component{
         let {imagePreviewUrl} = this.state;
         let $imagePreview = null;
         if (imagePreviewUrl) {
-          $imagePreview = (<img src={imagePreviewUrl} />);
+          $imagePreview = (<img src={imagePreviewUrl} width="80%"/>);
         }
     
         return (
-          <div>
-              <div class="container">
-            <form>
-            
-              <input type="file" name='image' onChange={this._handleImageChange} />
-              <button type="submit" onClick={this.handleUpload}>Upload Image</button>
-             
-            </form>
-            {$imagePreview}
-            <br/>
-            <br/>
-            <form>
-            <div class="row">
-            <div class="col-25">
-      <label for="fname">Title</label>
-    </div>
-    <div class="col-75">
-      <input type="text" name="title" value={this.state.title}  placeholder="Your content.." onChange={this.handleChange}/>
-    </div>
-    </div>
-    <br/>
-    <br/>
-    <div class="row">
-    <div class="col-25">
-      <label for="fname">Choose category</label>
-    </div>
-    <div>
-    <select id = "dropdown"  name="category" value={this.state.category} onChange={this.handleChange}>
-    <option value="Love">Love</option>
-    <option value="Sports">Sports</option>
-    <option value="Music">Music</option>
-    <option value="Games">Game</option>
-    <option value="Action">Action</option>
-    <option value="others">others</option>
+            <>
 
-</select>
-</div>
-    </div>
-    <br/>
-    <br/>
-    <div class="row">
-    <div>
-                <CKEditor
-                    content={this.state.content}
-                    onChange={this.onEditorChange} />
+            <div class="container2">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-2"></div>
+                        <div class="col-lg-6 col-md-8 login-box">
+                            <div class="col-lg-12 login-key">
+                                <i class="fa fa-key" aria-hidden="true"></i>
+                            </div>
+                            <br></br>
+                       
+                            <div class="col-lg-12 login-title">
+                              <center><h2>Add Article</h2></center>
+                            </div>
+                            <Link href="/blog1">
+                            <CloseIcon />
+                             </Link>
+                            <div class="col-lg-12 login-form">
+                                <div class="col-lg-12 login-form">
+                                    <form>
+                                        <div class="form-group">
+                                        <input type="file" name='image' onChange={this._handleImageChange} />
+                                          <button type="submit" onClick={this.handleUpload}>Upload Image</button>
+                                      </div>
+                                      <br></br>
+                                      {$imagePreview}
+                                        
+                                        <div class="form-group">
+                                            <label class="form-control-label">Title</label>
+                                            <input type="text" name="title" value={this.state.title}  placeholder="Your content.." onChange={this.handleChange}/>
+                                        </div> 
+                                        <div class="form-group">
+                                        <label for="fname">Choose category</label>                                      
+                                        <select id = "dropdown"  name="category" value={this.state.category} onChange={this.handleChange}>
+                                        <option value="Love">Love</option>
+                                        <option value="Sports">Sports</option>
+                                        <option value="Music">Music</option>
+                                        <option value="Games">Game</option>
+                                        <option value="Action">Action</option>
+                                        <option value="others">others</option>
+
+                                    </select>
+                                    </div>
+                                        <div class="form-group">
+                                            <label class="form-control-label">Write your Content here</label>
+                                            <CKEditor
+                                                content={this.state.content}
+                                                onChange={this.onEditorChange} />                           
+                                        </div>
+                                        <div class="form-group">
+           
+                                        </div>
+            
+                                      
+                                           
+                                            <div class="col-lg-6 login-btm login-button float-right text-right">
+                                            <Link href="/profile">
+                                            <button alignRight type="button" class="btn btn-outline-danger ">Cancel</button>
+                                           </Link>
+                                              &nbsp;&nbsp;&nbsp;&nbsp;
+                                                <button type="submit" onClick={this.editerr} name='submit' class="btn btn-outline-primary float-right">Submit</button>
+                                            </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-2"></div>
+                        </div>
+                    </div>
+            
+            
+            
+            
+            
+            
+            
+                        </div>
                     
                     <EditorPreview content={this.state.content} />
-            </div>
-    </div>
-  <input type="submit" onClick={this.editerr} value="Submit"/>
-            </form>
-            
-            </div>
-          </div>  
+      
+          </>
         )
       }
     
@@ -198,7 +225,7 @@ class AddBlog extends React.Component{
         render() {
             return (
                 <div className="editor-preview">
-                    <h2>Rendered content</h2>
+                    <h2>Content Preview</h2>
                     <div dangerouslySetInnerHTML={ { __html: this.props.content } }></div>
                 </div>
             );
@@ -213,4 +240,4 @@ class AddBlog extends React.Component{
         content: PropTypes.string
     };
 
-export default AddBlog;
+export default AddBlog
