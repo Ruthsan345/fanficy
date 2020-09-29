@@ -18,7 +18,7 @@ code {
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
 
 .user_card {
-  height: 400px;
+  height: 500px;
   width: 350px;
   margin-top: 10%;
   margin-bottom: auto;
@@ -148,10 +148,17 @@ input[type=submit]:hover {
 
 .container2 {
   margin: auto;
-  border-radius: 5px;
+  border-radius: 50px;
   background-color: #424244;
   padding: 20px;
   width: 90%;
+}
+.containerx {
+  margin: auto;
+  border-radius: 50px;
+  background-color: #424244;
+  padding: 0px;
+  width: 130%;
 }
 
 

@@ -68,7 +68,7 @@ export function timeStampToString(ts)  {
               <Grid item key={5} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                   <Link to={{
-                    pathname:'Blog/'+props.data.blogid,
+                    pathname:'edit-article/'+props.data.blogid,
                     state:{blog:props.data}
                   }}>
                   <CardMedia
@@ -89,11 +89,13 @@ export function timeStampToString(ts)  {
                   </CardContent>
                   <CardActions>
                   <Link to={{
-                    pathname:'Blog/'+props.data.blogid,
+                    pathname:'edit-article/'+props.data.blogid,
                     state:{blog:props.data}
                     }} >
-                    <Button size="small">View</Button>
+                    <Button variant="contained" color="primary" size="small">Edit</Button>
                   </Link>
+                  <Button variant="contained" color="secondary" size="small">Delete</Button>
+
                   </CardActions>
                 </Card>
               </Grid>

@@ -13,8 +13,8 @@ import fire from '../config/firebase';
 import  { Redirect } from 'react-router-dom' 
 import EditFile from "../../src/Layout/HomePage/Main/EditFile"
 
-
-  
+import ManageArticle from "../Layout/HomePage/Main/ManageArticle";
+import EditArticle from "../Layout/HomePage/Main/EditArticle";
   
 class Routes extends Component {
     constructor(props){
@@ -50,6 +50,9 @@ class Routes extends Component {
             <Route exact path="/Header1" component={Header1} /> 
             <Route exact path="/EditFile" component={EditFile} />   
            <Route exact path="/AddBlog" component={AddBlog} />   
+           <Route exact path="/Manage" component={ManageArticle} />   
+           <Route exact path="/edit-article/:id" component={EditArticle} />   
+
             <Route exact path="/Dashboard"  >
             {this.state.user ? <Redirect to="/Dashboard" /> : <Redirect to="/SignIn"/>}
             </Route>

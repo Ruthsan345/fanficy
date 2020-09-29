@@ -47,9 +47,13 @@ componentDidMount(){
         return (
       <>
            <Header title="Blog" sections={sections}/>
-        <div>
+           <br></br>
+           <center><h1><b>{parse(this.state.blog.title)}</b></h1></center> 
+           <center><h5>{parse(this.state.blog.category)}</h5></center>   
+         <img src={this.state.blog.imagePreviewUrl} width="100%" height="500px"/>
+        <div class="container">
        
-                <center>{parse(this.state.blog.categoryLabel)}</center>  
+              
 
                 <center>{parse(this.state.blog.content)}</center>
              

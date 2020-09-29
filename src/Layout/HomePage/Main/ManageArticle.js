@@ -13,7 +13,7 @@ import Category from './Category';
 import Main from './Main';
 import AppBar from '@material-ui/core/AppBar';
 import Footer from '../Footer/Footer';
-import Album from '../Album/Album';
+import Album from '../Album/Album1';
 import fire from '../../../config/firebase';
 import {reactLocalStorage} from 'reactjs-localstorage';
 
@@ -102,11 +102,14 @@ class Blog1 extends Component{
 
     componentDidMount(){
         this.getMyArticles()
+       
       
     }
     getMyArticles=()=>{
+        const id = reactLocalStorage.getObject('id');
+        console.log(id)
         db
-            .collection('blogCategory/Games/Blogs')
+            .collection('Userblog/'+id+'/blogs')
             .limit(8)
             .get()
             .then(docs => {
@@ -137,17 +140,10 @@ class Blog1 extends Component{
       <CssBaseline />
       <Container maxWidth="lg">
         <Header1 title="Blog" sections={sections} />
-        <main>
-          <MainFeaturedPost post={mainFeaturedPost} />
-          <Grid container spacing={4}>
-            {featuredPosts.map((post) => (
-              <FeaturedPost key={post.title} post={post} />
-            ))}
-          </Grid>
-       
-        </main>
       </Container>
       <Container>
+          <br></br>
+       <center><h1> <b>Manage Articles</b></h1></center> 
                     {
                         this.state.isLoaded?
                         this.state.articles.map((article,index)=>{
@@ -163,10 +159,7 @@ class Blog1 extends Component{
                         :''
                     }
                 </Container>
-      <AppBar component="h1" variant="h5" position="static" align="center" color="inherit">
-        Category
-     </AppBar>
-      <Category></Category>
+    
       <Footer
         title="Footer"
         description="Something here to give the footer a purpose!"
