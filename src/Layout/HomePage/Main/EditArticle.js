@@ -45,6 +45,7 @@ const sections = [
          
           this.state = {
             blog:{},
+            det:'',
             isLoaded:false,
             file: '',
             imagePreviewUrl: '',
@@ -65,10 +66,59 @@ const sections = [
         }
     
         componentDidMount(){
-            if(typeof this.props.location.state !== 'undefined'){
+          
+        /*  const id = reactLocalStorage.getObject('id');
+          console.log("mounted in edit");
+          console.log(id)
+          alert("vanta")
+          firestore().collection('Userblog').doc(id).collection('blogs').doc(this.props.location.state.blog.blogid)
+          .onSnapshot(snapshot=>{
+            console.log(snapshot.docs());
+          })
+          */
+         const id = reactLocalStorage.getObject('id');
+          console.log("mounted in edit");
+          console.log(id)
+          alert("vanta")
+          alert(this.props.location.state.blog.blogid)
+          firestore().collection('Userblog').doc(id).collection('blogs').where('blogid','==',this.props.location.state.blog.blogid)
+          .get()
+          .then(snapshot =>{
+            alert("po")
+              const det=[]
+              console.log("ko")
+              snapshot.forEach(doc=>{
+                  const data=doc.data()
+                  console.log("snap")
+                  det.push(data)
+              })
+              console.log("det")
+              this.setState({det:det})
+              this.state.det.map(userr =>{
+                   console.log(userr.username)
+                   this.setState({
+                    blogid:this.state.blogid=userr.blogid,
+                    title: this.state.title=userr.title,
+                    category: this.state.category=userr.category,
+                    content: this.state.content=userr.content,
+                    imagePreviewUrl:this.state.imagePreviewUrl=userr.imagePreviewUrl
+                  });
+                  
+              });
+             
+              console.log(snapshot)
+          })
+          .catch(error=>console.log(error))
+          alert(5)
+          alert(this.state.title)
+          /*alert(15)
+          alert(this.props.location.state.blog.blogid)
                this.setState({
                     blog:this.props.location.state.blog
+                    
                }, () => {
+                 alert(1)
+                alert(this.state.blog.blogid)
                    this.setState({
                     blogid:this.state.blogid=this.state.blog.blogid,
                     title: this.state.title=this.state.blog.title,
@@ -77,12 +127,16 @@ const sections = [
                     isLoaded:true
                    })
                })
-            }
+           
+           alert(this.state.content)*/
+           alert("ajay")
+           
         }
        
         _handleSubmit(e) {
           e.preventDefault();
           // TODO: do something with -> this.state.file
+          alert(this.state.content)
         }
       
         _handleImageChange(e) {
@@ -103,20 +157,34 @@ const sections = [
         handleChange(e){
           this.setState({ [e.target.name]: e.target.value});
         }
+        handleEditorChange() {
+          return ( event, editor ) => {
+            this.setState( { content: editor.getData() } );
+            console.log( this.state );
+          }
+        }
         onEditorChange( evt ) {
           this.setState( {
               content: evt.editor.getData()
           } );
       }
 
-    editer(e){
+
+   editer(e){
+          alert("ajay")
+          alert(this.state.imagePreviewUrl)
         e.preventDefault();
           console.log("update");
         const id = reactLocalStorage.getObject('id');
-        firestore().collection('Userblog').doc(id).update({
-        
+        firestore().collection('Userblog').doc(id).collection('blogs').doc(this.props.location.state.blog.blogid).update({
+           category:this.state.category,
+           content:this.state.content,
+           imagePreviewUrl:this.state.imagePreviewUrl,
+           title:this.state.title,
+           
           })
-   
+          alert(this.state.imagePreviewUrl)
+          console.log(this.state.bio)
           this.props.history.push("/blog1")
 
       }
@@ -155,12 +223,16 @@ const sections = [
                               <div class="col-lg-12 login-form">
                                   <div class="col-lg-12 login-form">
                                       <form>
-                                          <div class="form-group">
+                                      <center>{$imagePreview}</center>
+                                      <br/>
+                                      <br/>
+                                        <center> <div class="form-group">
+                                          
                                           <input type="file" name='image' onChange={this._handleImageChange} />
-                                            <button type="submit" onClick={this.handleUpload}>Upload Image</button>
-                                        </div>
+                                           
+                                        </div></center> 
                                         <br></br>
-                                        {$imagePreview}
+                                        
                                           
                                           <div class="form-group">
                                               <label class="form-control-label">Title</label>
@@ -180,10 +252,9 @@ const sections = [
                                       </div>
                                           <div class="form-group containerx">
                                               <label class="form-control-label">Write your Content here</label>
-                                              <CKEditor activeClass="editor"
-                                                 content={this.state.content}
-                                                  data={dataq}
-                                                  onChange={this.onEditorChange} />                           
+                                              <CKEditor 
+                                                 data={this.state.content}
+                                                 onChange={this. onEditorChange} />                           
                                           </div>
                                           <div class="form-group">
              
@@ -229,13 +300,6 @@ const sections = [
           }
       }
       
-      EditorPreview.defaultProps = {
-          content: ''
-      };
-      
-      EditorPreview.propTypes = {
-          content: PropTypes.string
-      };
-  
+     
   export default EditBlog;
 

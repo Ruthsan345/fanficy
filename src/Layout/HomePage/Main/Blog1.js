@@ -96,7 +96,8 @@ class Blog1 extends Component{
         super(props);
         this.state={
             isLoaded: false,
-            article:[]
+            article:[],
+            
         }
     }
 

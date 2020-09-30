@@ -132,7 +132,7 @@ class AddBlog extends React.Component{
         let {imagePreviewUrl} = this.state;
         let $imagePreview = null;
         if (imagePreviewUrl) {
-          $imagePreview = (<img src={imagePreviewUrl} width="50%"/>);
+          $imagePreview = (<img src={imagePreviewUrl} width="80%"/>);
         }
     
         return (
@@ -183,7 +183,10 @@ class AddBlog extends React.Component{
                                             <label class="form-control-label">Write your Content here</label>
                                             <CKEditor
                                                 content={this.state.content}
-                                                onChange={this.onEditorChange} />                           
+                                                onChange={this.onEditorChange} /> 
+                                                         <label>
+                      
+                    </label>                  
                                         </div>
                                         <div class="form-group">
            

@@ -33,10 +33,31 @@ function Header(props) {
   const classes = useStyles();
   const { sections, title } = props;
 
-  
+  componentDidMount()
+    {
+        
+        const id = reactLocalStorage.getObject('id');
+        console.log("mounted");
+        console.log(id)
+        
+        firestore().collection('userss').where('id','==',id)
+        .get()
+        .then(snapshot =>{
+            const users=[]
+            snapshot.forEach(doc=>{
+                const data=doc.data()
+                users.push(data)
+            })
+            this.setState({users:users})
+            console.log(snapshot)
+        })
+        .catch(error=>console.log(error))
+    }
+
   return (
    
     <React.Fragment>
+      
   <div className="pull-left">
                            <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" />
 

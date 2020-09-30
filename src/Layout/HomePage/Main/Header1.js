@@ -6,6 +6,8 @@ import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
 import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
+import {reactLocalStorage} from 'reactjs-localstorage';
+import  {useState, useEffect, useRef} from 'react';
 import Link from '@material-ui/core/Link';
 import SearchBar from "material-ui-search-bar";
 import Menu from '@material-ui/core/Menu';
@@ -20,6 +22,7 @@ import { Form,FormControl,Navbar, Nav, NavItem, NavDropdown } from 'react-bootst
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 //import Routes from '../../../Routes/Routes';
 import Avatar from '@material-ui/core/Avatar';
+import { firestore } from 'firebase';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -43,7 +46,8 @@ function Header(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const classes = useStyles();
   const { sections, title } = props;
-
+  const [profileDetails, setprofileDetails] = useState(null);
+ 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -51,7 +55,49 @@ function Header(props) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  useEffect (() =>{
+    const id = reactLocalStorage.getObject('id');
+    console.log("mounted");
+    console.log(id)
+    
+    firestore().collection('userss').where('id','==',id)
+    .get()
+    .then(snapshot =>{
+        const users=[]
+        snapshot.forEach(snapshot=>{
+          
+            setprofileDetails(snapshot.data())
+        })
+        
+        console.log(snapshot)
+    })
+    .catch(error=>console.log(error))
+    
+     /* firestore().collection('userss').where('id','==',id)
+      .get()
+      .then(snapshot =>{
+          const det=[]
+          snapshot.forEach(doc=>{
+              const data=doc.data()
+              det.push(data)
+          })
+          this.setState({det:det})
+          this.state.det.map(userr =>{
+               console.log(userr.username)
+               this.setState({
+              // username: this.state.username=userr.username,
+               //bio: this.state.bio=userr.bio,
+               //date: this.state.date=userr.dob,
+               =userr.url
+              });
+              
+          });
+         
+          console.log(snapshot)
+      })
+      .catch(error=>console.log(error))*/
+  },[])
+ 
 
   return (
     
@@ -74,7 +120,7 @@ function Header(props) {
   />
   &nbsp;  &nbsp;
   <div className="pull-left">
-                           <Avatar id="simple-menu" onClick={handleClick} alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" />
+                           <Avatar id="simple-menu" onClick={handleClick} alt="Remy Sharp" src={profileDetails?.url} />
   </div>
 
   <Menu

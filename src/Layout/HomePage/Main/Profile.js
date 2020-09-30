@@ -64,10 +64,15 @@ class Profile extends React.Component{
           <ArrowBackIcon label="Back"/> Back to Home
           </b>
           </Link>
+     
+    
   <br/>
   <br/>
-  {this.state.users &&
+  {
+      
+  this.state.users &&
   this.state.users.map(userr =>{
+      console.log(userr.url)
       return(
 
 
@@ -76,11 +81,8 @@ class Profile extends React.Component{
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
-                            <div class="file btn btn-sm btn-primary">
-                                Change Photo
-                                <input type="file" name="file"/>
-                            </div>
+                            <img src={userr.url} class="circular_image"alt=""/>
+                            
                         </div>
                     </div>
                     <div class="col-md-6">
