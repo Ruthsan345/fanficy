@@ -14,6 +14,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {Link} from 'react-router-dom';
 import firebase from '../../../config/firebase'
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import {reactLocalStorage} from 'reactjs-localstorage';
+import { firestore } from 'firebase';
 
 const db =firebase.firestore()
 
@@ -59,6 +63,39 @@ export function timeStampToString(ts)  {
  
  const Album= (props) => {
   const classes = useStyles();
+function name(params) {
+  
+}
+function  submit()  {
+    confirmAlert({
+      title: 'Delete Blog',
+      message: 'Are you sure to Delete this blog.',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => {alert(props.data.blogid)
+          alert("ok")
+          const id = reactLocalStorage.getObject('id');
+          firestore().collection("Userblog").doc(id).collection("blogs").doc(props.data.blogid).delete().then(function() {
+            console.log("Document successfully deleted!");
+        }).catch(function(error) {
+            console.error("Error removing document: ", error);
+        });
+        window.location.reload();
+        }
+         
+        }
+
+        ,
+        {
+          label: 'No',
+          onClick: () => alert('Click No')
+        }
+      ]
+    });
+   
+  }
+  ;
 
   return (
     
@@ -94,7 +131,7 @@ export function timeStampToString(ts)  {
                     }} >
                     <Button variant="contained" color="primary" size="small">Edit</Button>
                   </Link>
-                  <Button variant="contained" color="secondary" size="small">Delete</Button>
+                  <Button variant="contained" onClick={submit} color="secondary" size="small">Delete</Button>
 
                   </CardActions>
                 </Card>

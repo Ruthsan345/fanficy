@@ -47,6 +47,7 @@ class LoginU extends React.Component{
       username:'',
       bio:'',
       date:'',
+      url:''
 
     }
   }
@@ -63,7 +64,7 @@ class LoginU extends React.Component{
       dob:this.state.date,
       email:email,
       id:firebase.auth().currentUser.uid,
-      url:'https://storage.needpix.com/rsynced_images/profile-2398782_1280.png'
+      url:'https://www.eguardtech.com/wp-content/uploads/2018/08/Network-Profile.png'
     }).then((u)=>{
      
       alert("Login Sucessfull");
@@ -75,6 +76,7 @@ class LoginU extends React.Component{
       console.log(error);
     });
   }
+  
 handleChange(e){
     this.setState({ [e.target.name]: e.target.value});
   }

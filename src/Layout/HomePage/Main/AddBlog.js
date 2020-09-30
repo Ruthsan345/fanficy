@@ -183,7 +183,11 @@ class AddBlog extends React.Component{
                                             <label class="form-control-label">Write your Content here</label>
                                             <CKEditor
                                                 content={this.state.content}
-                                                onChange={this.onEditorChange} />                           
+                                                onChange={this.onEditorChange} /> 
+                                                         <label>
+                        Change value:
+                        <textarea defaultValue={this.state.content} onChange={this.handleChange} />
+                    </label>                  
                                         </div>
                                         <div class="form-group">
            
