@@ -37,7 +37,19 @@ function Copyright() {
   );
 }
 
-
+const slidePage = document.querySelector(".slide-page");
+const nextBtnFirst = document.querySelector(".firstNext");
+const prevBtnSec = document.querySelector(".prev-1");
+const nextBtnSec = document.querySelector(".next-1");
+const prevBtnThird = document.querySelector(".prev-2");
+const nextBtnThird = document.querySelector(".next-2");
+const prevBtnFourth = document.querySelector(".prev-3");
+const submitBtn = document.querySelector(".submit");
+const progressText = [...document.querySelectorAll(".step p")];
+const progressCheck = [...document.querySelectorAll(".step .check")];
+const bullet = [...document.querySelectorAll(".step .bullet")];
+let max = 4;
+let current = 1;
 class LoginU extends React.Component{
   constructor(props){
     super(props);
@@ -65,7 +77,7 @@ class LoginU extends React.Component{
       id:firebase.auth().currentUser.uid
     }).then((u)=>{
      
-      alert("Login Sucessfull");
+      alert("Yes, You're in..");
       this.props.history.push("/Blog1")
       var mal=firebase.auth().currentUser.uid
       reactLocalStorage.setObject('id',mal );
@@ -78,64 +90,49 @@ handleChange(e){
     this.setState({ [e.target.name]: e.target.value});
   }
 
+
+
 render() {
 
   return (
+<>
+<center>
+    <div class="container2">
+ <center><h1>Say Hello!!</h1></center>     
+     <br></br>
+<div class="form-outer">
+        <form >
+          <div class="page slide-page">
+            <div class="title">
+Welcome !!</div>
+<div class="field">
+              <div class="label">User Name</div>
+                <input type="text" name="username" class="form-control input_user" value="" placeholder="username"  value={this.state.username}
+                onChange={this.handleChange} required/>        
+                    </div>
+        <div class="field">
+              <div class="label">Bio</div>
+              <input type="text" name="bio" class="form-control input_user" value="" placeholder="Bio"  value={this.state.bio}
+                onChange={this.handleChange}/>            </div>
+            <div class="field">
+            <div class="label">Date Of Birth</div>
+            <input type="date" name="date" class="form-control input_pass" value="" placeholder="date"  value={this.state.date}
+                onChange={this.handleChange}/>
+</div>                
+<div class="field">
+<button type="button" name="button"
+            onClick={this.loginU} >Yes!! I am in..</button>
+            </div>
+</div>
+</form>
+</div>
+</div>
 
-    <div class="container h-100">
-		<div class="d-flex justify-content-center h-100">
-		<div class="user_card">
-		<div class="d-flex justify-content-center">
-		<div class="brand_logo_container">
-		<img src="https://www.logo.wine/a/logo/Google_Account/Google_Account-Logo.wine.svg" class="brand_logo" alt="Logo"/>
-		</div>
-		</div>
-		<div class="d-flex justify-content-center form_container">
-		<form>
-    <div class="input-group mb-3">
-		<div class="input-group-append">
-		<span class="input-group-text"><i class="fas fa-user"></i></span>
-		</div>
-		<input type="text" name="username" class="form-control input_user" value="" placeholder="username"  value={this.state.username}
-                onChange={this.handleChange}/>
-		</div>
-		<div class="input-group mb-3">
-		<div class="input-group-append">
-		<span class="input-group-text"><i class="fas fa-user"></i></span>
-		</div>
-		<input type="text" name="bio" class="form-control input_user" value="" placeholder="Bio"  value={this.state.bio}
-                onChange={this.handleChange}/>
-		</div>
-		<div class="input-group mb-2">
-		<div class="input-group-append">
-		<span class="input-group-text"><i class="fas fa-key"></i></span>
-		</div>
-		<input type="date" name="date" class="form-control input_pass" value="" placeholder="date"  value={this.state.date}
-                onChange={this.handleChange}/>
-		</div>
-		<div class="form-group">
-		<div class="custom-control custom-checkbox">
-		<input type="checkbox" class="custom-control-input" id="customControlInline" />
-		<label class="custom-control-label" for="customControlInline">Remember Password</label>
-		</div>
-		</div>
-		</form>
-		</div>
-		<div class="d-flex justify-content-center mt-3 login_container">
-		<button type="button" name="button" class="btn login_btn"
-            onClick={this.loginU} >Login</button>
-		</div>
-		<div class="mt-4">
-		<div class="d-flex justify-content-center links">
-	Don't have an account? <a href="/SignUp" class="ml-2">Sign Up</a>
-		</div>
-		<div class="d-flex justify-content-center links">
-		<a href="#">Forgot your password?</a>
-		</div>
-		</div>
-		</div>
-		</div>
-  </div>
+</center>
+
+
+  
+  </>
   );
 }
 }

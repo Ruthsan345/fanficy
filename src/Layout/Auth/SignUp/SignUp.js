@@ -50,10 +50,7 @@ class SignUp extends React.Component{
       reactLocalStorage.setObject('textval', this.state.email);
       alert("Signup Successfull");
       this.props.history.push("/Dashboard")
-      this.props.navigation.navigate('/Dashboard', {  
-        userName: this.state.email,  
-        
-    })  
+   
     }).catch((error)=>{
       alert("Invalid Details");
       console.log(error);

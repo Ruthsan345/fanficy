@@ -141,6 +141,7 @@ class Blog extends Component{
        
         </main>
       </Container>
+      <div>
       <Container>
                     {
                         this.state.isLoaded?
@@ -157,6 +158,7 @@ class Blog extends Component{
                         :''
                     }
                 </Container>
+                </div>
       <AppBar component="h1" variant="h5" position="static" align="center" color="inherit">
         Category
      </AppBar>

@@ -34,7 +34,7 @@ function Footer(props) {
     <footer className={classes.footer}>
       <Container maxWidth="lg">
         <Typography variant="h6" align="center" gutterBottom>
-          {title}
+<h3><b>FanFic</b></h3>
         </Typography>
         <Typography
           variant="subtitle1"
@@ -42,7 +42,7 @@ function Footer(props) {
           color="textSecondary"
           component="p"
         >
-          {description}
+Worlds Largest Repository Fictions !!
         </Typography>
         <Copyright />
       </Container>

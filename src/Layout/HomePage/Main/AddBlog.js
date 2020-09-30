@@ -137,8 +137,8 @@ class AddBlog extends React.Component{
     
         return (
             <>
-
-            <div class="container2">
+<br></br><br></br>
+            <div class="container3">
                     <div class="row">
                         <div class="col-lg-3 col-md-2"></div>
                         <div class="col-lg-6 col-md-8 login-box">
@@ -148,7 +148,7 @@ class AddBlog extends React.Component{
                             <br></br>
                        
                             <div class="col-lg-12 login-title">
-                              <center><h2>Add Article</h2></center>
+                              <center><h2><b>Add Article !!</b></h2></center>
                             </div>
                             <Link href="/blog1">
                             <CloseIcon />
@@ -170,7 +170,7 @@ class AddBlog extends React.Component{
                                         <div class="form-group ">
                                         <label for="fname">Choose category</label>                                      
                                         <select id = "dropdown"  name="category" value={this.state.category} onChange={this.handleChange}>
-                                        <option value="Love">Love</option>
+                                        <option value="Love" selected>Love</option>
                                         <option value="Sports">Sports</option>
                                         <option value="Music">Music</option>
                                         <option value="Games">Game</option>

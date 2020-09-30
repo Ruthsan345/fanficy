@@ -7,8 +7,22 @@ import firebase from '../../../config/firebase';
 import { Form,FormControl,Button,Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import Link from '@material-ui/core/Link';
 import Avatar from '@material-ui/core/Avatar';
-//import { Button, Navbar } from 'react-bootstrap'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import Header1 from './Header1';
 
+//import { Button, Navbar } from 'react-bootstrap'
+const sections = [
+    { title: 'Technology', url: '#' },
+    { title: 'Design', url: '#' },
+    { title: 'Culture', url: '#' },
+    { title: 'Business', url: '#' },
+    { title: 'Politics', url: '#' },
+    { title: 'Opinion', url: '#' },
+    { title: 'Science', url: '#' },
+    { title: 'Health', url: '#' },
+    { title: 'Style', url: '#' },
+    { title: 'Travel', url: '#' },
+  ];
 class Profile extends React.Component{
     state={
         users: null
@@ -43,35 +57,13 @@ class Profile extends React.Component{
     render(){
         return(
             <div>
-     
-     <Navbar bg="dark" variant="dark">
-    <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-    <Nav className="mr-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#features">Features</Nav.Link>
-      <Nav.Link href="#pricing">Pricing</Nav.Link>
-    </Nav>
-    <Form inline>
-      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      <Button variant="outline-info">Search</Button>
-      </Form>
+                        <Header1 title="Blog" sections={sections} />
 
-         <Nav pullRight>
-            <NavDropdown alignRight eventKey={0} 
-                title={
-                    <div className="pull-left">
-                           <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" />
-
-                    </div>
-                } 
-                id="basic-nav-dropdown">
-
-                <NavDropdown.Item href="/Profile">Profile</NavDropdown.Item>
-                <NavDropdown.Item onClick={this.logout} href="">Log Out</NavDropdown.Item>
-            </NavDropdown>
-        </Nav>
-  
-  </Navbar>
+     <Link href="/blog1" >
+          <b>
+          <ArrowBackIcon label="Back"/> Back to Home
+          </b>
+          </Link>
   <br/>
   <br/>
   {this.state.users &&

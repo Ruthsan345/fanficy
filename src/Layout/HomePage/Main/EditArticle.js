@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
 import CardMedia from '@material-ui/core/CardMedia';
 import Header from '../../HomePage/Main/Header1'
 import { render } from '@testing-library/react';
@@ -137,7 +137,7 @@ const sections = [
           return (
               <>
   
-              <div class="container2">
+              <div class="container3">
                       <div class="row">
                           <div class="col-lg-3 col-md-2"></div>
                           <div class="col-lg-6 col-md-8 login-box">
@@ -149,7 +149,7 @@ const sections = [
                               <div class="col-lg-12 login-title">
                                 <center><h2><b>Edit Article</b></h2></center>
                               </div>
-                              <Link href="/blog1">
+                              <Link href="/manage">
                               <CloseIcon />
                                </Link>
                               <div class="col-lg-12 login-form">
@@ -193,7 +193,7 @@ const sections = [
                                              <br/>
                                              <br/>
                                               <div class="col-lg-6 login-btm login-button float-right text-right">
-                                              <Link href="/blog1">
+                                              <Link href="/manage">
                                               <button alignRight type="button" class="btn btn-outline-danger ">Cancel</button>
                                              </Link>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;

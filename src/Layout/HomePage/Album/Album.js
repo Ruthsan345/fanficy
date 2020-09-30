@@ -2,7 +2,7 @@ import * as React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import CameraIcon from '@material-ui/icons/PhotoCamera';
-import Card from '@material-ui/core/Card';
+//import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -13,41 +13,31 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {Link} from 'react-router-dom';
-import firebase from '../../../config/firebase'
+import firebase from '../../../config/firebase';
+import classes from './Album.module.css'
+import Favorite from '@material-ui/icons/Favorite';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import CardHeader from '@material-ui/core/CardHeader';
+import Collapse from '@material-ui/core/Collapse';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import { red } from '@material-ui/core/colors';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle,Badge
+} from 'reactstrap';
+
 
 const db =firebase.firestore()
 
-const useStyles = makeStyles((theme) => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
-  },
-  heroButtons: {
-    marginTop: theme.spacing(4),
-  },
-  cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
-  },
-  card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  cardMedia: {
-    paddingTop: '56.25%', // 16:9
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
-}));
+
 
 const cards = [1,2,3];
 
@@ -58,49 +48,64 @@ export function timeStampToString(ts)  {
 
  
  const Album= (props) => {
-  const classes = useStyles();
+ // const classes = useStyles();
 
   return (
-    
-        <Container className={classes.cardGrid} maxWidth="md">
-          <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={5} xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
-                  <Link to={{
-                    pathname:'Blog/'+props.data.blogid,
-                    state:{blog:props.data}
-                  }}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image="https://placeimg.com/325/180/any"
-                    title="Image title"
-                  />
-                  </Link>
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                    {props.data.title}
-                    </Typography>
-                    <Typography>
-                  
-                    <br></br>
-                    { props.data.category}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                  <Link to={{
+    <>
+&nbsp;&nbsp;
+&nbsp;
+
+<Card className={classes.ArticleCard}>
+<Link to={{
                     pathname:'Blog/'+props.data.blogid,
                     state:{blog:props.data}
                     }} >
-                    <Button size="small">View</Button>
+          <CardImg 
+           top
+           width="100%"
+           src="https://placeimg.com/325/180/any"
+           alt="Card Image"
+           className={classes.CardImage}
+          />
+          </Link>
+          <CardBody className={classes.CardBody}>
+              <CardTitle className={classes.CardTitle}>
+              <h3>
+              {props.data.title}
+              </h3>
+              </CardTitle>
+              <CardSubtitle className={classes.CardSubtitle}>
+              <Typography>
+                  
+                  { props.data.category}
+                  </Typography>
+                  <Badge className={classes.createDate}>
+                  {}
+                  </Badge>
+              </CardSubtitle>
+              <FormControlLabel control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} name="checkedH" />}
+      />
+        <Link to={{
+                    pathname:'https://facebook.com/'+props.data.blogid,
+                    state:{blog:props.data}
+                    }} >
+                        <ShareIcon/>
                   </Link>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
+                        &nbsp;
+                        &nbsp;
+
+              <Link to={{
+                    pathname:'Blog/'+props.data.blogid,
+                    state:{blog:props.data}
+                    }} >
+                    <Button variant="outlined" color="primary" size="small">View</Button>
+                  </Link>
+
+
+          </CardBody>
+          </Card>
       
+        </>
   );
 }
 

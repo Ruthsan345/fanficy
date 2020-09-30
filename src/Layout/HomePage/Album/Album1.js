@@ -2,7 +2,6 @@ import * as React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import CameraIcon from '@material-ui/icons/PhotoCamera';
-import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -13,7 +12,13 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {Link} from 'react-router-dom';
-import firebase from '../../../config/firebase'
+import firebase from '../../../config/firebase';
+import classes from './Album.module.css'
+
+import {
+    Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle,Badge
+  } from 'reactstrap';
 
 const db =firebase.firestore()
 
@@ -58,51 +63,63 @@ export function timeStampToString(ts)  {
 
  
  const Album= (props) => {
-  const classes = useStyles();
+ // const classes = useStyles();
 
   return (
     
-        <Container className={classes.cardGrid} maxWidth="md">
-          <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={5} xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
-                  <Link to={{
+    <>
+    &nbsp;&nbsp;
+    &nbsp;
+    
+    <Card className={classes.ArticleCard}>
+    <Link to={{
                     pathname:'edit-article/'+props.data.blogid,
                     state:{blog:props.data}
                   }}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image="https://placeimg.com/325/180/any"
-                    title="Image title"
-                  />
-                  </Link>
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                    {props.data.title}
-                    </Typography>
-                    <Typography>
-                  
-                    <br></br>
-                    { props.data.category}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
+              <CardImg 
+               top
+               width="100%"
+               src="https://placeimg.com/325/180/any"
+               alt="Card Image"
+               className={classes.CardImage}
+              />
+              </Link>
+              <CardBody className={classes.CardBody}>
+                  <CardTitle className={classes.CardTitle}>
+                  <h4>
+                  {props.data.title}
+                  </h4>
+                  </CardTitle>
+                  <br></br>
+                  <CardSubtitle className={classes.CardSubtitle}>
+                  <Typography>
+                      
+                      { props.data.category}
+                      </Typography>
+                      <Badge className={classes.createDate}>
+                      {}
+                      </Badge>
+                  </CardSubtitle>
                   <Link to={{
                     pathname:'edit-article/'+props.data.blogid,
                     state:{blog:props.data}
                     }} >
                     <Button variant="contained" color="primary" size="small">Edit</Button>
                   </Link>
+                  &nbsp;
+                  &nbsp;
+
                   <Button variant="contained" color="secondary" size="small">Delete</Button>
 
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      
+    
+    
+              </CardBody>
+              </Card>
+          
+
+    
+        </>
+
   );
 }
 

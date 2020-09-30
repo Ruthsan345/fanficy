@@ -16,6 +16,8 @@ import Footer from '../Footer/Footer';
 import Album from '../Album/Album1';
 import fire from '../../../config/firebase';
 import {reactLocalStorage} from 'reactjs-localstorage';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
@@ -143,6 +145,13 @@ class Blog1 extends Component{
       </Container>
       <Container>
           <br></br>
+          <Link to={{
+                    pathname:'blog1/',
+                    }} >
+          <b>
+          <ArrowBackIcon label="Back"/> Back to Home
+          </b>
+          </Link>
        <center><h1> <b>Manage Articles</b></h1></center> 
                     {
                         this.state.isLoaded?
