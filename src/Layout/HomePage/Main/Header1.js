@@ -87,7 +87,7 @@ function Header(props) {
 <MenuItem onClick={handleClose}><NavLink class="NavLink" to="/Profile"> <PersonIcon/> &nbsp; My Profile  </NavLink></MenuItem>     
 <MenuItem onClick={handleClose}><NavLink class="NavLink" to="/AddBlog"> <PostAddIcon/> &nbsp;New Article  </NavLink></MenuItem>       
 <MenuItem onClick={handleClose}><NavLink class="NavLink" to="/Manage"><EditIcon/> &nbsp;Manage Articles</NavLink></MenuItem>       
-<MenuItem onClick={handleClose}><NavLink class="NavLink" to="#"><ChatIcon/> &nbsp;Coming Soon</NavLink></MenuItem>       
+<MenuItem onClick={handleClose}><NavLink class="NavLink" to="/Video"><ChatIcon/> &nbsp;Share a Story </NavLink></MenuItem>       
 <MenuItem  onClick={handleClose}> <NavLink  class="NavLink" to="#"> <HelpIcon/> &nbsp; Support </NavLink> </MenuItem>
 <MenuItem onClick={handleClose}><NavLink  class="NavLink" to="/"><ExitToAppIcon/> &nbsp; Logout </NavLink></MenuItem>
 </Menu>
