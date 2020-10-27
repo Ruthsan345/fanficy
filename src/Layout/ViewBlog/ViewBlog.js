@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import CardMedia from '@material-ui/core/CardMedia';
-import Header from '../HomePage/Header/Header'
+import Header1 from '../HomePage/Main/Header1'
 import { render } from '@testing-library/react';
 import {withRouter} from 'react-router-dom';
 import parse from 'html-react-parser';
@@ -46,7 +46,7 @@ componentDidMount(){
     
         return (
       <>
-           <Header title="Blog" sections={sections}/>
+           <Header1 title="Blog" sections={sections}/>
            <br></br>
            <center><h1><b>{parse(this.state.blog.title)}</b></h1></center> 
            <center><h5>{parse(this.state.blog.category)}</h5></center>   

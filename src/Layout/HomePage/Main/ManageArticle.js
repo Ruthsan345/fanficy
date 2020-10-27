@@ -146,7 +146,7 @@ class Blog1 extends Component{
       <Container>
           <br></br>
           <Link to={{
-                    pathname:'blog1/',
+                    pathname:'blog1',
                     }} >
           <b>
           <ArrowBackIcon label="Back"/> Back to Home

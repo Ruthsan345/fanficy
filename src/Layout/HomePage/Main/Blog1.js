@@ -107,7 +107,7 @@ class Blog1 extends Component{
     }
     getMyArticles=()=>{
         db
-            .collection('blogCategory/Games/Blogs')
+            .collection('blogCategory/Marvel/Blogs')
             .limit(8)
             .get()
             .then(docs => {

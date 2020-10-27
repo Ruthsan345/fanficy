@@ -76,46 +76,66 @@ class Profile extends React.Component{
       return(
 
 
-            <div class="container1 emp-profile">
+            <div class="container4 emp-profile">
             <form >
                 <div class="row">
+            
+                <br/><br/><br/><br/><br/>
                     <div class="col-md-4">
-                        <div class="profile-img">
+
+
+                        <div class="profile-img ">
                             <img src={userr.url} class="circular_image"alt=""/>
                             
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="profile-head">
-                                    <h5>
-                                    {userr.username}
-                                    </h5>
+              
+
+                    <div class="col-sm-8 float-right">
+                    <br/><br/>
+                    <h6><b>About :</b></h6>
+      <p>{userr.bio}</p>
+                                            </div>
+                    <div class="col-lg-12">
+                        <div class="profile-head ">
+                      
+                        <br/>
+                                    <h3>
+                                        <b>   {userr.username}</b>
+                                 
+                                    </h3>
                                     <h6>
                                     {userr.email}
                                     </h6>
                                     <p class="proile-rating">DOB : <span>{userr.dob}</span></p>
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
-                                </li>
-                               
-                            </ul>
                         </div>
+
+
+
+                    
+
                     </div>
                     <Link href="/AddBlog">
                     <div class="col-sm-12">
+                  <center>
                     <Link href="/EditFile">
        <Button class="profile-edit-btn" name="btnAddMore" variant="success" size="large">
        Edit Bio
         </Button>
-        </Link>
+        </Link></center>
                     </div>
                     </Link>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
+
+                    <div class=" pull-right col-lg-10">
                         <div class="profile-work">
                     
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="profile-work float-right">
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -124,7 +144,7 @@ class Profile extends React.Component{
                                         <div class="row">
                                          
                                             <div class="col-md-8">
-      <p>{userr.bio}</p>
+      <p></p>
                                             </div>
                                         </div>
                                         <div class="row">
